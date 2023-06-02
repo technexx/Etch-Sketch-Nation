@@ -1,8 +1,4 @@
 const gridContainer = document.querySelector("#container")
-gridContainer.style.height = "800px"
-gridContainer.style.width = "800px"
-gridContainer.style.border = "solid black"
-
 const gridButton = document.querySelector("#grid-button")
 
 let numberOfSquares = 64
@@ -20,7 +16,6 @@ function populateGrid(squareCount) {
         let count = Math.sqrt(numberOfSquares);
         for (let i=0; i<count; i++) {
             createSquares()
-            styleSquares(i)
         }
         console.log(gridContainer)
 
@@ -35,15 +30,6 @@ function createSquares() {
     gridContainer.appendChild(content)
 }
 
-function styleSquares(position) {
-    squareList = document.querySelectorAll(".squares")
-    const square = squareList[position]
-
-    // let squareSize = 800 / Math.sqrt(numberOfSquares)
-    // square.style.width = squareSize + "px"
-    // square.style.height = squareSize + "px"
-    square.style.border = "solid black"
-}
 
 function isPerfectSquare(number) {
     return (Number.isInteger(Math.sqrt(number)))
