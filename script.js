@@ -7,6 +7,7 @@ gridButton.addEventListener("click", () => {
     let promptText = prompt("Enter one of the following: 25, 36, 49, 64, 81, or 100")
 
     if (promptText === "25" || promptText === "36" || promptText === "49" || promptText === "64" || promptText === "81" || promptText === 100) {
+        clearGrid()
         populateGrid(promptText)
     } else {
         promptText = prompt("NO!")
@@ -39,6 +40,13 @@ function createSquares(position) {
     squaresNode[position].style.width = width + "px"
 
     setSquareEventListener(squaresNode[position], position)
+}
+
+function clearGrid() {
+    const squaresNode = document.querySelectorAll(".squares")
+    squaresNode.forEach (square => {
+        square.remove();
+    });
 }
 
 function setSquareEventListener(element, position) {
