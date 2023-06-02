@@ -1,10 +1,16 @@
 const gridContainer = document.querySelector("#container")
 const gridButton = document.querySelector("#grid-button")
 
-let numberOfSquares = 64
+populateGrid(64)
 
-gridButton.addEventListener('click', ()=> {
-    populateGrid(64)
+gridButton.addEventListener("click", () => {
+    let promptText = prompt("Enter one of the following: 25, 36, 49, 64, 81, or 100")
+
+    if (promptText === "25" || promptText === "36" || promptText === "49" || promptText === "64" || promptText === "81" || promptText === 100) {
+        populateGrid(promptText)
+    } else {
+        promptText = prompt("NO!")
+    }
 })
 
 function populateGrid(squareCount) {
@@ -16,11 +22,9 @@ function populateGrid(squareCount) {
         for (let i=0; i<numberOfSquares; i++) {
             createSquares(i)
         }
-        console.log(gridContainer)
     }
 }
 
-//
 function createSquares(position) {
     const content = document.createElement("div")
     content.classList.add("squares")
