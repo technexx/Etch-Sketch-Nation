@@ -22,6 +22,8 @@ function populateGrid(squareCount) {
             createSquares()
             styleSquares(i)
         }
+        console.log(gridContainer)
+
     }
 }
 
@@ -31,19 +33,15 @@ function createSquares() {
     content.classList.add("squares")
     //We append the div with the class label.
     gridContainer.appendChild(content)
-
-
-    console.log(gridContainer)
 }
 
-//selectorAll returns nodeList
 function styleSquares(position) {
     squareList = document.querySelectorAll(".squares")
     const square = squareList[position]
 
-    let squareSize = 800 / Math.sqrt(numberOfSquares)
-    square.style.width = squareSize + "px"
-    square.style.height = squareSize + "px"
+    // let squareSize = 800 / Math.sqrt(numberOfSquares)
+    // square.style.width = squareSize + "px"
+    // square.style.height = squareSize + "px"
     square.style.border = "solid black"
 }
 
