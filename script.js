@@ -20,27 +20,31 @@ function populateGrid(squareCount) {
         let count = Math.sqrt(numberOfSquares);
         for (let i=0; i<count; i++) {
             createSquares()
+            styleSquares(i)
         }
     }
 }
 
+//
 function createSquares() {
     const content = document.createElement("div")
     content.classList.add("squares")
     //We append the div with the class label.
     gridContainer.appendChild(content)
 
-    square = document.querySelector(".squares")
+
+    console.log(gridContainer)
+}
+
+//selectorAll returns nodeList
+function styleSquares(position) {
+    squareList = document.querySelectorAll(".squares")
+    const square = squareList[position]
 
     let squareSize = 800 / Math.sqrt(numberOfSquares)
-
     square.style.width = squareSize + "px"
     square.style.height = squareSize + "px"
     square.style.border = "solid black"
-
-    console.log(square)
-
-    
 }
 
 function isPerfectSquare(number) {
