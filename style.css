@@ -4,7 +4,6 @@
     border: 3px solid black;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
 }
 
 .squares {
@@ -12,3 +11,8 @@
     border: solid black;
     box-sizing: border-box;
 }
+
+/* .squares:hover {
+    color: blue;
+    background-color: currentColor;
+} */

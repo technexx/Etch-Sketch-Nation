@@ -17,7 +17,6 @@ function populateGrid(squareCount) {
             createSquares(i)
         }
         console.log(gridContainer)
-
     }
 }
 
@@ -27,21 +26,23 @@ function createSquares(position) {
     content.classList.add("squares")
     //We append the div with the class label.
     gridContainer.appendChild(content)
-
-    const squares = document.querySelector(".squares")
-
-    const squaresNode = document.querySelectorAll(".squares")
-
     
     let height = gridContainer.clientHeight / Math.sqrt(numberOfSquares)
     let width = gridContainer.clientWidth / Math.sqrt(numberOfSquares)
 
-    console.log(height)
-
+    const squaresNode = document.querySelectorAll(".squares")
     squaresNode[position].style.height = height + "px"
     squaresNode[position].style.width = width + "px"
+
+    setSquareEventListener(squaresNode[position], position)
 }
 
+function setSquareEventListener(element, position) {
+    element.addEventListener("mouseover", () => {
+        console.log("over position " + position)
+        element.style.backgroundColor = "blue"
+    })
+}
 
 function isPerfectSquare(number) {
     return (Number.isInteger(Math.sqrt(number)))
