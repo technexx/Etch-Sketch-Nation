@@ -3,10 +3,13 @@
     width: 800px;
     border: solid black;
     display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 .squares {
     color: white;
     border: solid black;
-    flex-grow: 1;
+    /* width: 100px; */
+    /* height: 100px; */
 }

@@ -13,9 +13,8 @@ function populateGrid(squareCount) {
     if (!isPerfectSquare) {
         alert("Must enter a perfect square (e.g. 64, 81, 100)")
     } else {
-        let count = Math.sqrt(numberOfSquares);
-        for (let i=0; i<count; i++) {
-            createSquares()
+        for (let i=0; i<numberOfSquares; i++) {
+            createSquares(i)
         }
         console.log(gridContainer)
 
@@ -23,11 +22,18 @@ function populateGrid(squareCount) {
 }
 
 //
-function createSquares() {
+function createSquares(position) {
     const content = document.createElement("div")
     content.classList.add("squares")
     //We append the div with the class label.
     gridContainer.appendChild(content)
+
+    const squares = document.querySelector(".squares")
+
+    const squaresNode = document.querySelectorAll(".squares")
+    let size = 800 / Math.sqrt(numberOfSquares)
+    squaresNode[position].style.height = size + "px"
+    squaresNode[position].style.width = size + "px"
 }
 
 
