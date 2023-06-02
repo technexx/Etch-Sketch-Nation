@@ -31,9 +31,15 @@ function createSquares(position) {
     const squares = document.querySelector(".squares")
 
     const squaresNode = document.querySelectorAll(".squares")
-    let size = 800 / Math.sqrt(numberOfSquares)
-    squaresNode[position].style.height = size + "px"
-    squaresNode[position].style.width = size + "px"
+
+    
+    let height = gridContainer.clientHeight / Math.sqrt(numberOfSquares)
+    let width = gridContainer.clientWidth / Math.sqrt(numberOfSquares)
+
+    console.log(height)
+
+    squaresNode[position].style.height = height + "px"
+    squaresNode[position].style.width = width + "px"
 }
 
 
