@@ -22,12 +22,8 @@ function isGridInputValid(input) {
 function populateGrid(squareCount) {
     numberOfSquares = squareCount
 
-    if (!isPerfectSquare) {
-        alert("Must enter a perfect square (e.g. 64, 81, 100)")
-    } else {
-        for (let i=0; i<numberOfSquares; i++) {
-            createSquares(i)
-        }
+    for (let i=0; i<numberOfSquares; i++) {
+        createSquares(i)
     }
 }
 
