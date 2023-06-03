@@ -6,13 +6,18 @@ populateGrid(64)
 gridButton.addEventListener("click", () => {
     let promptText = prompt("Enter one of the following: 25, 36, 49, 64, 81, or 100")
 
-    if (promptText === "25" || promptText === "36" || promptText === "49" || promptText === "64" || promptText === "81" || promptText === "100") {
-        clearGrid()
-        populateGrid(promptText)
-    } else {
+    console.log(promptText)
+    while (!isGridInputValid(promptText)) {
         promptText = prompt("NO!")
-    }
+    } 
+            
+    clearGrid()
+    populateGrid(promptText)
 })
+
+function isGridInputValid(input) { 
+    return (input === "25" || input === "36" || input === "49" || input === "64" || input === "81" || input === "100")
+}
 
 function populateGrid(squareCount) {
     numberOfSquares = squareCount
