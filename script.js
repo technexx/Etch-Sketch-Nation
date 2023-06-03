@@ -2,7 +2,6 @@ const gridContainer = document.querySelector("#container")
 const gridButton = document.querySelector("#grid-button")
 
 populateGrid(64)
-let testColor = "#FFFFFF"
 
 gridButton.addEventListener("click", () => {
     let promptText = prompt("Enter one of the following: 25, 36, 49, 64, 81, or 100")
