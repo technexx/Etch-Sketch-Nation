@@ -2,6 +2,7 @@ const gridContainer = document.querySelector("#container")
 const gridButton = document.querySelector("#grid-button")
 
 populateGrid(64)
+let testColor = "#FFFFFF"
 
 gridButton.addEventListener("click", () => {
     let promptText = prompt("Enter one of the following: 25, 36, 49, 64, 81, or 100")
@@ -51,8 +52,10 @@ function clearGrid() {
 
 function setSquareEventListener(element, position) {
     element.addEventListener("mouseover", () => {
-        console.log("over position " + position)
         element.style.backgroundColor = getRandomColor()
+        // element.style.backgroundColor = testColor
+        testColor = darkenColor(testColor)
+        // console.log(testColor)
     })
 }
 
@@ -69,7 +72,43 @@ function getRandomColor() {
     randomNumber = randomNumber.toString(16);
     //padStart will enter "0" for every character length short of 6.
     let randomColor = randomNumber.padStart(6,0);
-    randomColor = "#" + randomColor.toUpperCase()
+    randomColor = "#" + randomColor.toUpperCase();
+
     
     return randomColor;
+}
+
+//255, 255, 255 = white; 0, 0, 0 = black
+function darkenColor(color, percent) {
+    let hexOne = parseInt(color.substring(1,3), 16);
+    let hexTwo = parseInt(color.substring(4,6), 16);
+    let hexThree = parseInt(color.substring(5,7), 16);
+
+    // console.log("hexOne is " + hexOne)
+    hexOne = convertHex(hexOne)
+    hexTwo = convertHex(hexTwo)
+    hexThree = convertHex(hexThree)
+    // console.log("hex one is " + hexOne)
+    // console.log("hex two is " + hexTwo)
+    // console.log("hex three is " + hexThree)
+
+
+    let newString = "#" + hexOne + hexTwo + hexThree
+
+    return newString
+}
+
+function convertHex(hexInt) {
+    hexInt = parseInt(hexInt * (100 - 10) / 100);
+
+    hexInt = Math.round(hexInt);
+
+    console.log(hexInt)
+
+    hexInt = hexInt.toString(16)
+    hexInt = hexInt.padStart(2, 0)
+
+
+    return hexInt;
+
 }
