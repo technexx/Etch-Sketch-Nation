@@ -1,6 +1,8 @@
-.body {
+body {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #container {
@@ -9,7 +11,6 @@
     border: 3px solid black;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     flex-direction: column;
 }
 
@@ -21,7 +22,7 @@
 
 .button-row {
     display: flex;
-    padding-bottom: 24px
+    padding-bottom: 16px
 }
 
 #grid-button {

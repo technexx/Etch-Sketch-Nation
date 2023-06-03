@@ -50,13 +50,10 @@ function clearGrid() {
     });
 }
 
-function setSquareEventListener(element, position) {
+function setSquareEventListener(element) {
     element.addEventListener("mouseover", () => {
-        let randomColor = getRandomColor()
-        element.style.backgroundColor = randomColor;
-
         if (!element.hasAttribute("color")) {
-            element.setAttribute("color", randomColor)
+            element.setAttribute("color", getRandomColor())
         }
 
         if (!element.hasAttribute("fadePct")) {
@@ -64,8 +61,6 @@ function setSquareEventListener(element, position) {
         } else {
             element.setAttribute("fadePct", (parseInt(element.getAttribute("fadePct")) + 10))
             element.style.backgroundColor = darkenColor(element.getAttribute("color"), parseInt(element.getAttribute("fadePct")))
-
-            console.log(element.getAttribute("fadePct"))
         }
 
     })
@@ -80,7 +75,7 @@ function getRandomColor() {
     let maxVal = 0XFFFFFF;
     let randomNumber = Math.random() * maxVal;
     randomNumber = Math.floor(randomNumber);
-    //toString() argument defines base of numeral system. "2" would be a binary number, while "16" is a hexidecimal string.
+    //toString() argument defines base of numeral system. "16" is a hexidecimal string.
     randomNumber = randomNumber.toString(16);
     //padStart will enter "0" for every character length short of 6.
     let randomColor = randomNumber.padStart(6,0);
@@ -98,9 +93,6 @@ function darkenColor(color, percent) {
     hexOne = convertHex(hexOne, percent)
     hexTwo = convertHex(hexTwo, percent)
     hexThree = convertHex(hexThree, percent)
-    // console.log("hex one is " + hexOne)
-    // console.log("hex two is " + hexTwo)
-    // console.log("hex three is " + hexThree)
 
     let newString = "#" + hexOne + hexTwo + hexThree
 
@@ -108,13 +100,12 @@ function darkenColor(color, percent) {
 }
 
 function convertHex(hexInt, percent) {
+    if (percent > 100) percent = 100
     hexInt = parseInt(hexInt * (100 - percent) / 100);
-    if (hexInt <= 0) hexInt = 0
 
     hexInt = Math.round(hexInt);
     hexInt = hexInt.toString(16)
     hexInt = hexInt.padStart(2, 0)
-
 
     return hexInt;
 }
