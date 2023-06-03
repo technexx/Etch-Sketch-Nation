@@ -6,7 +6,7 @@ populateGrid(64)
 gridButton.addEventListener("click", () => {
     let promptText = prompt("Enter one of the following: 25, 36, 49, 64, 81, or 100")
 
-    if (promptText === "25" || promptText === "36" || promptText === "49" || promptText === "64" || promptText === "81" || promptText === 100) {
+    if (promptText === "25" || promptText === "36" || promptText === "49" || promptText === "64" || promptText === "81" || promptText === "100") {
         clearGrid()
         populateGrid(promptText)
     } else {
@@ -52,10 +52,24 @@ function clearGrid() {
 function setSquareEventListener(element, position) {
     element.addEventListener("mouseover", () => {
         console.log("over position " + position)
-        element.style.backgroundColor = "blue"
+        element.style.backgroundColor = getRandomColor()
     })
 }
 
 function isPerfectSquare(number) {
     return (Number.isInteger(Math.sqrt(number)))
+}
+
+function getRandomColor() {
+    //This is hex equiv. to 16777215
+    let maxVal = 0XFFFFFF;
+    let randomNumber = Math.random() * maxVal;
+    randomNumber = Math.floor(randomNumber);
+    //toString() argument defines base of numeral system. "2" would be a binary number, while "16" is a hexidecimal string.
+    randomNumber = randomNumber.toString(16);
+    //padStart will enter "0" for every character length short of 6.
+    let randomColor = randomNumber.padStart(6,0);
+    randomColor = "#" + randomColor.toUpperCase()
+    
+    return randomColor;
 }
