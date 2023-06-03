@@ -52,10 +52,22 @@ function clearGrid() {
 
 function setSquareEventListener(element, position) {
     element.addEventListener("mouseover", () => {
-        element.style.backgroundColor = getRandomColor()
-        // element.style.backgroundColor = testColor
-        testColor = darkenColor(testColor)
-        // console.log(testColor)
+        let randomColor = getRandomColor()
+        element.style.backgroundColor = randomColor;
+
+        if (!element.hasAttribute("color")) {
+            element.setAttribute("color", randomColor)
+        }
+
+        if (!element.hasAttribute("fadePct")) {
+            element.setAttribute("fadePct", 0)
+        } else {
+            element.setAttribute("fadePct", (parseInt(element.getAttribute("fadePct")) + 10))
+            element.style.backgroundColor = darkenColor(element.getAttribute("color"), parseInt(element.getAttribute("fadePct")))
+
+            console.log(element.getAttribute("fadePct"))
+        }
+
     })
 }
 
@@ -73,7 +85,6 @@ function getRandomColor() {
     //padStart will enter "0" for every character length short of 6.
     let randomColor = randomNumber.padStart(6,0);
     randomColor = "#" + randomColor.toUpperCase();
-
     
     return randomColor;
 }
@@ -84,31 +95,26 @@ function darkenColor(color, percent) {
     let hexTwo = parseInt(color.substring(4,6), 16);
     let hexThree = parseInt(color.substring(5,7), 16);
 
-    // console.log("hexOne is " + hexOne)
-    hexOne = convertHex(hexOne)
-    hexTwo = convertHex(hexTwo)
-    hexThree = convertHex(hexThree)
+    hexOne = convertHex(hexOne, percent)
+    hexTwo = convertHex(hexTwo, percent)
+    hexThree = convertHex(hexThree, percent)
     // console.log("hex one is " + hexOne)
     // console.log("hex two is " + hexTwo)
     // console.log("hex three is " + hexThree)
-
 
     let newString = "#" + hexOne + hexTwo + hexThree
 
     return newString
 }
 
-function convertHex(hexInt) {
-    hexInt = parseInt(hexInt * (100 - 10) / 100);
+function convertHex(hexInt, percent) {
+    hexInt = parseInt(hexInt * (100 - percent) / 100);
+    if (hexInt <= 0) hexInt = 0
 
     hexInt = Math.round(hexInt);
-
-    console.log(hexInt)
-
     hexInt = hexInt.toString(16)
     hexInt = hexInt.padStart(2, 0)
 
 
     return hexInt;
-
 }
